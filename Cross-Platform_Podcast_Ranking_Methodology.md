@@ -2,7 +2,7 @@
 
 ## Overview
 
-This methodology creates a unified ranking system across four major podcast platforms: Spotify, YouTube, Amazon (Audible/Amazon Music), and iHeart Radio. The system balances raw audience reach with platform-specific difficulty to reflect both total market impact and achievement relative to platform constraints. Designed to identify the top 25 podcasts for Golden Globes eligibility consideration.
+This methodology creates a unified ranking system across four major podcast platforms: Spotify, YouTube, Amazon (Audible/Amazon Music), and iHeart Radio. The system uses a three-component weighted scoring approach that balances total consumption, platform-specific performance, and multi-platform presence. Designed to identify the top 25 podcasts for Golden Globes eligibility consideration based on comprehensive audience reach and engagement metrics.
 
 ## Data Sources
 
@@ -57,25 +57,22 @@ Composite Score = (Consumption × 0.5) + (Platform Reach × 0.3) + (Platform Cou
 - Remove punctuation and special characters
 - Standardize spacing for cross-platform matching
 
-### 3. Composite Score Formula
-```
-Base Score = Sum of Platform Scores / Number of Platforms Present
-Platform Bonus = (Platform Count - 1) × 10%
-Composite Score = Base Score × (1 + Platform Bonus)
-```
+### 3. Final Composite Calculation
+The three component scores are combined using the weighted formula shown above. This replaces traditional platform averaging approaches with a more sophisticated multi-dimensional assessment that better reflects podcast success across different metrics.
 
 ## Fairness Considerations
 
-### Multi-Platform Advantage
-Shows appearing on multiple platforms receive a 10% bonus per additional platform, recognizing:
-- Broader audience reach
-- Cross-platform content strategy success
-- True market penetration
+### Component Balance
+The 50/30/20 weight distribution ensures:
+- Total consumption drives primary ranking differences (reflects real-world impact)
+- Platform performance provides meaningful differentiation (rewards excellence)
+- Multi-platform presence offers modest but important advantage (credits strategy)
 
 ### Missing Data Handling
-- Missing platform scores treated as 0 (neutral, not penalized)
-- Scores calculated only from platforms where show appears
-- No imputation to avoid artificial score inflation
+- Missing platform data treated as 0 for all calculations
+- Shows not appearing on a platform receive no penalty in other components
+- Platform reach score calculated only from platforms where show appears
+- No artificial imputation that could inflate or deflate scores
 
 ### Geographic Consistency
 - All platforms now focus on US market for fair comparison
@@ -91,11 +88,13 @@ Shows appearing on multiple platforms receive a 10% bonus per additional platfor
 
 ## Ranking Output
 
-The system generates:
-1. **Composite Score**: Primary ranking metric (0-110+ scale)
-2. **Platform Count**: Number of platforms where show appears
-3. **Individual Platform Scores**: Transparency into platform-specific performance
-4. **Raw Metrics**: Original engagement numbers for validation
+The system generates comprehensive results including:
+1. **Composite Score**: Primary ranking metric (0-100+ scale)
+2. **Component Breakdown**: Individual scores for consumption, platform reach, and platform count
+3. **Total Consumption**: Sum of all engagement metrics across platforms
+4. **Platform Count**: Number of platforms where show appears
+5. **Individual Platform Scores**: Transparency into platform-specific performance (0-100 each)
+6. **Raw Metrics**: Original engagement numbers for validation and transparency
 
 ## Scoring Examples
 
@@ -130,7 +129,8 @@ Rankings can be validated by:
 - Analyzing platform-specific vs. composite rankings for consistency
 - Reviewing multi-platform shows for expected score premiums
 - Cross-referencing with external podcast charts where available
-- Verifying smaller platform leaders receive appropriate difficulty bonuses
+- Ensuring total consumption leaders rank appropriately high
+- Verifying multi-platform shows receive appropriate count component benefits
 
 ## Methodology Strengths
 
@@ -149,8 +149,22 @@ Rankings can be validated by:
 - **Market Dynamics**: Audience estimates based on industry averages, not real-time data
 - **Geographic Scope**: US-only focus may miss global podcast phenomena
 
-## Implementation
+## Technical Implementation
 
+### Data Processing
+1. **Data Loading**: Four CSV files loaded with platform-specific cleaning
+2. **Geographic Filtering**: YouTube filtered to US shows only
+3. **Name Normalization**: Show names standardized for cross-platform matching
+4. **Score Calculation**: Three-component system applied as described above
+
+### Output Generation
 Execute `python podcast_ranking_system.py` to generate:
-- `podcast_cross_platform_rankings.csv`: Complete ranked dataset
-- Console output: Top 25 shows with platform breakdown
+- **CSV Export**: `podcast_cross_platform_rankings.csv` with complete data and scores
+- **Console Display**: Top 25 shows with detailed component breakdowns
+- **Transparency**: All raw metrics and component scores visible for validation
+
+### Quality Assurance
+- All calculations use consistent 0-100 normalization
+- Component weights clearly defined and documented
+- Cross-platform matching handles name variations
+- Missing data handled systematically without bias
