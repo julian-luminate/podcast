@@ -1,0 +1,44 @@
+original_genre,refined_genre
+True Crime,True Crime
+True Crime & Beauty,True Crime
+True Crime & Comedy,True Crime
+News & Politics,News & Politics
+News,News & Politics
+News & Commentary,News & Politics
+News & Law,News & Politics
+Comedy,Comedy
+Comedy & Entertainment,Comedy
+Comedy & Interview,Comedy
+Comedy & Lifestyle,Comedy
+Comedy & Live Show,Comedy
+Comedy & News,Comedy
+Comedy & Pop Culture,Comedy
+Comedy & Sports,Comedy
+Comedy & Commentary,Comedy
+Gaming & Comedy,Comedy
+Interview & Talk,Interview & Talk
+Interview & Military,Interview & Talk
+Sports,Sports
+Sports & Commentary,Sports
+Sports & Entertainment,Sports
+Sports & Interview,Sports
+Sports & Lifestyle,Sports
+Business & Finance,Business
+Business & Interview,Business
+Business & Politics,Business
+Pop Culture & Entertainment,Entertainment
+Entertainment & Lifestyle,Entertainment
+Anime & Pop Culture,Entertainment
+Relationships & Pop Culture,Entertainment
+Hip-Hop & Culture,Entertainment
+Country Music & Radio,Entertainment
+Radio & Entertainment,Entertainment
+Relationships & Lifestyle,Entertainment
+Educational,Education
+Education & Law,Education
+Science & Psychology,Education
+Science & Technology,Education
+Self-Help & Wellness,Education
+Religion & Spirituality,Education
+Mystery & Conspiracy,Education
+Miscellaneous,Education

@@ -1,0 +1,142 @@
+normalized_name,final_genre,platform_genre,research_genre,tavily_genre,source_summary
+2 bears 1 cave with tom segura bert kreischer,Comedy,,Comedy,,Research
+"2 bears, 1 cave with tom segura & bert kreischer",Comedy,,,Comedy,Tavily research
+2020,True Crime,True Crime,True Crime,,Amazon platform + Amazon match
+48 hours,True Crime,True Crime,True Crime,True Crime,Amazon platform + Amazon match + Tavily research
+a closer look late night with seth meyers,Comedy,,Comedy,,Internet Research
+all videos,Education,,Education,,Internet Research
+"all-in with chamath, jason, sacks & friedberg",Business,,,Business,Tavily research
+allin with chamath jason sacks friedberg,Business,,,Business,Tavily research
+are you a charlotte,Comedy,,Comedy,,Research
+armchair expert with dax shepard,Interview & Talk,,,Interview & Talk,Tavily research
+bad friends,Comedy,,,Comedy,Tavily research
+bff with dave portnoy josh richards and bri chickenfry,Entertainment,,Entertainment,,Research
+boyscast,Comedy,,Comedy,,Research
+brandon walker,Sports,,Sports,,Research
+breaking points,News & Politics,,News & Politics,News & Politics,Internet Research + Tavily research
+brian tyler cohen,News & Politics,,News & Politics,News & Politics,Research + Tavily research
+bulwark super feed,News & Politics,,News & Politics,,Internet Research
+bulwark takes,News & Politics,,News & Politics,,Internet Research
+call her daddy,Interview & Talk,,Entertainment,Interview & Talk,Research + Tavily research
+candace,News & Politics,,,News & Politics,Tavily research
+caso cerrado - pleitos familiares con escándalo,Entertainment,,,Entertainment,Tavily research
+caso cerrado pleitos familiares con escándalo,Entertainment,,Entertainment,,Internet Research
+club shay shay,Sports,,Sports,,Research
+conan o'brien needs a friend,Interview & Talk,,,Interview & Talk,Tavily research
+conan obrien needs a friend,Comedy,,Comedy,,Internet Research
+crime junkie,True Crime,True Crime,True Crime,True Crime,Amazon platform + Amazon match + Tavily research
+crook county,True Crime,,True Crime,True Crime,Internet Research + Tavily research
+dateline nbc,True Crime,True Crime,True Crime,True Crime,Amazon platform + Amazon match + Tavily research
+dick doof,Comedy,Comedy,,,Amazon platform
+die drei rabauken,Comedy,Comedy,,,Amazon platform
+die nervigen,Comedy,Comedy,,,Amazon platform
+direito estatal podcast,Education,,Education,,Internet Research
+distractible,Comedy,,,Comedy,Tavily research
+dr insanity podcasts,Comedy,,Comedy,,Research
+farron balanced,News & Politics,,News & Politics,News & Politics,Internet Research + Tavily research
+financial audit,Business,,Business,Business,Internet Research + Tavily research
+flagrant,Comedy,,Comedy,,Research
+fresh and fit podcast,Entertainment,,Entertainment,,Research
+full send podcast,Entertainment,,Entertainment,,Research
+full surahs,Education,,Education,Education,Internet Research + Tavily research
+good hang with amy poehler,Comedy,,Comedy,,Internet Research
+good mythical morning with rhett & link,Entertainment,,,Entertainment,Tavily research
+good mythical morning with rhett link,Comedy,,Comedy,,Research
+hidden brain,Education,,Education,Education,Internet Research + Tavily research
+hobbylos,Comedy,Comedy,,,Amazon platform
+huberman lab,Education,,,Education,Tavily research
+ihip news,News & Politics,,News & Politics,,Research
+impaulsive with logan paul,Entertainment,,Entertainment,,Research
+jaackmaates happy hour podcast,Comedy,,Comedy,,Research
+jack cocchiarella show,Sports,,Sports,,Internet Research
+jre clips,Interview & Talk,,Interview & Talk,,Research
+kill tony,Comedy,,Comedy,Comedy,Research + Tavily research
+kottbruder germanletsplay paluten,Comedy,Comedy,,,Amazon platform
+kurt krömer feelings,Comedy,Comedy,,,Amazon platform
+la corneta,Comedy,Comedy,,,Amazon platform
+la corneta extendida,Comedy,Comedy,,,Amazon platform
+las culturistas with matt rogers and bowen yang,Comedy,,Comedy,,Research
+last podcast on the left,True Crime,,True Crime,True Crime,Research + Tavily research
+law&crime sidebar with jesse weber,True Crime,,,True Crime,Tavily research
+lawcrime sidebar with jesse weber,News & Politics,,News & Politics,,Research
+legal af podcast,News & Politics,,News & Politics,,Internet Research
+lex fridman podcast,Education,,Education,,Research
+matt and shane's secret podcast,Comedy,,,Comedy,Tavily research
+matt and shanes secret podcast,Comedy,,,Comedy,Tavily research
+morbid,True Crime,True Crime,True Crime,True Crime,Amazon platform + Amazon match + Tavily research
+mord auf ex,True Crime,True Crime,,,Amazon platform
+mordlust,True Crime,True Crime,,,Amazon platform
+mrballen podcast strange dark mysterious stories,True Crime,True Crime,True Crime,,Amazon platform + Amazon match
+"mrballen podcast: strange, dark & mysterious stories",True Crime,,,True Crime,Tavily research
+mrballen's medical mysteries,True Crime,,,True Crime,Tavily research
+mrballens medical mysteries,True Crime,True Crime,,,Amazon platform
+murder mystery makeup,True Crime,,True Crime,,Internet Research
+"murder, mystery & makeup",True Crime,,,True Crime,Tavily research
+my favorite murder with karen kilgariff and georgia hardstark,True Crime,True Crime,True Crime,True Crime,Amazon platform + Amazon match + Tavily research
+nbc nightly news with tom llamas,News & Politics,,News & Politics,News & Politics,Internet Research + Tavily research
+new heights with jason & travis kelce,Sports,,,Sports,Tavily research
+new heights with jason travis kelce,Sports,,Sports,,Research
+not gonna lie with kylie kelce,Sports,,Sports,Sports,Internet Research + Tavily research
+npr news now,News & Politics,News,,News & Politics,Amazon platform + Tavily research
+on purpose with jay shetty,Interview & Talk,,Education,Interview & Talk,Research + Tavily research
+pardon my take,Sports,Sports,Sports,Sports,Amazon platform + Research + Tavily research
+pka painkiller already,Comedy,,Comedy,,Research
+redhanded,True Crime,True Crime,,True Crime,Amazon platform + Tavily research
+relatos de la noche,Entertainment,,,Entertainment,Tavily research
+rof daily updates,News & Politics,,News & Politics,,Internet Research
+rolandmartinunfiltered,News & Politics,,News & Politics,,Internet Research
+rotten mango,True Crime,,True Crime,True Crime,Research + Tavily research
+shawn ryan show,Interview & Talk,,Interview & Talk,Interview & Talk,Internet Research + Tavily research
+small town murder,Comedy,Comedy,,True Crime,Amazon platform + Tavily research
+smartless,Comedy,Comedy,Comedy,Interview & Talk,Amazon platform + Amazon match + Tavily research
+smosh reads reddit stories,Comedy,,Comedy,Comedy,Internet Research + Tavily research
+snapped women who murder,True Crime,True Crime,,,Amazon platform
+snapped: women who murder,True Crime,,,True Crime,Tavily research
+stuff you should know,Education,,Education,Education,Research + Tavily research
+the adam mockler show,News & Politics,,News & Politics,,Internet Research
+the ben shapiro show,News & Politics,,News & Politics,News & Politics,Research + Tavily research
+the bill simmons podcast,Sports,,,Sports,Tavily research
+the bobby bones show,Entertainment,,Entertainment,Entertainment,Research + Tavily research
+the breakfast club,Entertainment,,Entertainment,Entertainment,Research + Tavily research
+the candace owens show,News & Politics,,News & Politics,,Research
+the charlie kirk show,News & Politics,,News & Politics,,Research
+the daily,News & Politics,News,News & Politics,News & Politics,Amazon platform + Research + Tavily research
+the dan bongino show,News & Politics,,News & Politics,,Research
+the devory darkins show,News & Politics,,News & Politics,,Internet Research
+the diary of a ceo with steven bartlett,Business,,Business,,Research
+the h3 podcast,Comedy,,Comedy,,Research
+the herd with colin cowherd,Sports,,Sports,Sports,Internet Research + Tavily research
+the intersection with michael popok,News & Politics,,News & Politics,,Internet Research
+the joe rogan experience,Interview & Talk,,Interview & Talk,Interview & Talk,Research + Tavily research
+the luke beasley show,News & Politics,,News & Politics,,Research
+the megyn kelly show,News & Politics,,,News & Politics,Tavily research
+the meidastouch podcast,News & Politics,,News & Politics,News & Politics,Research + Tavily research
+the mel robbins podcast,Interview & Talk,,,Interview & Talk,Tavily research
+the pbd podcast,Business,,Business,,Research
+the philip defranco show (every mon-tues-wed-thurs-friday!),Entertainment,,,Entertainment,Tavily research
+the philip defranco show every montueswedthursfriday,News & Politics,,News & Politics,,Internet Research
+the ramsey show,Business,,Business,Business,Research + Tavily research
+the ramsey show highlights,Business,,Business,,Internet Research
+the shawn ryan show,Interview & Talk,,Interview & Talk,,Research
+the steve harvey morning show,Entertainment,,Entertainment,Entertainment,Research + Tavily research
+the tim dillon show,Comedy,,Comedy,,Research
+the toast,Entertainment,,,Entertainment,Tavily research
+the tucker carlson show,News & Politics,,News & Politics,News & Politics,Research + Tavily research
+the why files operation podcast,Education,,Education,,Research
+the young turks,News & Politics,,News & Politics,News & Politics,Internet Research + Tavily research
+theo von this past weekend,Comedy,,Comedy,,Research
+this past weekend w theo von,Comedy,,Comedy,,Internet Research
+this past weekend w/ theo von,Comedy,,,Comedy,Tavily research
+timcast news stories,News & Politics,,News & Politics,News & Politics,Internet Research + Tavily research
+tmg podcast,Comedy,,Comedy,,Research
+trash taste,Entertainment,,Entertainment,,Research
+two hot takes,True Crime,,,True Crime,Tavily research
+up first from npr,News & Politics,News,,News & Politics,Amazon platform + Tavily research
+wait wait dont tell me,Comedy,,Comedy,,Internet Research
+wait wait... don't tell me!,Comedy,,,Comedy,Tavily research
+wow in the world,Education,,,Education,Tavily research
+äffchen mit käffchen,Comedy,Comedy,,,Amazon platform
+"подкасты - мировая политика: сша, китай, россия, украина",News & Politics,,,News & Politics,Tavily research
+подкасты мировая политика сша китай россия украина,News & Politics,,News & Politics,,Internet Research
+کلیپ کوتاه استند آپ کمدیهای مکس امینی,Comedy,,Comedy,,Internet Research
+安住紳一郎の日曜天国,Comedy,Leisure,,Comedy,Amazon platform + Tavily research

@@ -21,13 +21,14 @@ This methodology creates a unified ranking system across four major podcast plat
 
 ## Normalization Strategy
 
-### 1. Three-Component Weighted Scoring System
-Rankings are calculated using a weighted sum of three key components that reflect different aspects of podcast success:
+### 1. Four-Component Weighted Scoring System
+Rankings are calculated using a weighted sum of four key components that reflect different aspects of podcast success:
 
 **Component Weights:**
 - **Total Consumption (50%)**: Sum of all engagement metrics across platforms
 - **Platform Reach (30%)**: Average performance within each platform where show appears
-- **Platform Count (20%)**: Number of platforms where show has presence
+- **Platform Count (10%)**: Number of platforms where show has presence
+- **Within-Genre Popularity (10%)**: Ranking within the show's specific genre category
 
 **Detailed Calculation:**
 ```
@@ -39,18 +40,23 @@ Consumption Score = (Total Consumption / Maximum Total) × 100
 Platform Reach = Average of individual platform scores (0-100 each)
 Individual Platform Score = (Show Metric / Platform Maximum) × 100
 
-# Component 3: Platform Count Score (20% weight)
+# Component 3: Platform Count Score (10% weight)
 Platform Count Score = (Number of Platforms / Maximum Platforms) × 100
 
+# Component 4: Within-Genre Popularity Score (10% weight)
+Genre Rank = Show's consumption rank within its unified genre category
+Genre Score = ((Max Rank - Show Rank + 1) / Max Rank) × 100
+
 # Final Composite Score
-Composite Score = (Consumption × 0.5) + (Platform Reach × 0.3) + (Platform Count × 0.2)
+Composite Score = (Consumption × 0.5) + (Platform Reach × 0.3) + (Platform Count × 0.1) + (Genre Popularity × 0.1)
 ```
 
 **Rationale for This Approach:**
-- **Consumption Priority (50%)**: Rewards shows with highest total audience reach
-- **Platform Performance (30%)**: Credits strong performance relative to platform potential
-- **Multi-Platform Presence (20%)**: Values cross-platform content strategy
-- **Balanced Fairness**: No single metric can dominate rankings alone
+- **Total Reach Priority (50%)**: Maintains absolute audience impact as the dominant factor
+- **Platform Excellence (30%)**: Significant weight for strong platform-specific performance
+- **Multi-Platform Strategy (10%)**: Maintains value for cross-platform presence
+- **Genre Context (10%)**: Rewards shows that dominate within their content category
+- **Comprehensive Assessment**: Four dimensions provide holistic view of podcast success
 
 ### 2. Show Name Standardization
 - Convert to lowercase
@@ -79,48 +85,56 @@ The 50/30/20 weight distribution ensures:
 - YouTube filtered to US-only shows (missing countries assumed US)
 - Eliminates geographic bias in cross-platform analysis
 
-### Three-Component Balance
-- **Total Reach Emphasis**: Consumption score (50%) ensures absolute audience size drives rankings
-- **Platform Excellence Recognition**: Reach score (30%) rewards shows that dominate their platforms
-- **Multi-Platform Strategy Value**: Count score (20%) credits successful cross-platform presence
+### Four-Component Balance
+- **Total Reach Priority**: Consumption score (50%) ensures absolute audience size remains the primary driver
+- **Platform Excellence Recognition**: Reach score (30%) significantly rewards shows that excel on their platforms
+- **Multi-Platform Recognition**: Count score (10%) provides modest credit for cross-platform presence
+- **Genre Context Assessment**: Genre popularity (10%) rewards category leadership and specialization
 - **Prevents Single-Metric Gaming**: No component alone can determine final ranking
-- **Real-World Relevance**: Reflects industry focus on total reach, platform performance, and distribution strategy
+- **Comprehensive Evaluation**: Reflects total impact, platform mastery, distribution strategy, and genre dominance
 
 ## Ranking Output
 
 The system generates comprehensive results including:
 1. **Composite Score**: Primary ranking metric (0-100+ scale)
-2. **Component Breakdown**: Individual scores for consumption, platform reach, and platform count
-3. **Total Consumption**: Sum of all engagement metrics across platforms
-4. **Platform Count**: Number of platforms where show appears
-5. **Individual Platform Scores**: Transparency into platform-specific performance (0-100 each)
-6. **Raw Metrics**: Original engagement numbers for validation and transparency
+2. **Component Breakdown**: Individual scores for consumption, platform reach, platform count, and genre popularity
+3. **Genre Classification**: Unified genre category for each show
+4. **Total Consumption**: Sum of all engagement metrics across platforms
+5. **Platform Count**: Number of platforms where show appears
+6. **Individual Platform Scores**: Transparency into platform-specific performance (0-100 each)
+7. **Within-Genre Ranking**: Show's position within its specific genre category
+8. **Raw Metrics**: Original engagement numbers for validation and transparency
 
 ## Scoring Examples
 
-**Three-Component Breakdown:**
+**Four-Component Breakdown:**
 
-**Example 1: High Total Consumption**
-- Joe Rogan Experience: 536M Spotify + 240M YouTube hours + 15M iHeart = Massive consumption score
-- Strong platform reach across multiple platforms
-- High platform count (3 platforms)
-- Result: Likely #1 overall due to dominant consumption component
+**Example 1: Total Reach Leader**
+- Joe Rogan Experience: 536M Spotify + 240M YouTube hours + 15M iHeart = Dominant consumption score (50%)
+- Strong platform reach across multiple platforms = High reach score (30%)
+- Multi-platform presence (3 platforms) = Good count score (10%)
+- #1 in Interview & Talk genre = Maximum genre score (10%)
+- Result: Likely overall #1 due to excellence across all four components
 
-**Example 2: Platform Excellence**
-- Show dominating single platform: 100% platform reach score on one platform
-- Lower consumption and platform count scores
-- Result: Strong overall score but limited by single-platform presence
+**Example 2: Genre Specialist**
+- Top True Crime show: Moderate total consumption but dominates genre
+- Excellent platform reach within True Crime category
+- Single platform presence = Lower count score
+- #1 within True Crime = Maximum genre popularity score
+- Result: Strong overall score with genre specialization bonus
 
-**Example 3: Multi-Platform Strategy**
-- Moderate performance across 4 platforms: Good platform count score (100%)
+**Example 3: Multi-Platform Generalist**
+- Good performance across 4 platforms = Maximum count score (100%)
 - Average platform reach across all platforms
 - Moderate total consumption from distributed presence
-- Result: Balanced score reflecting successful cross-platform strategy
+- Mid-tier within genre = Moderate genre score
+- Result: Balanced score reflecting successful cross-platform distribution strategy
 
 **Component Impact:**
-- **Consumption (50%)**: Drives majority of ranking differences
-- **Platform Reach (30%)**: Differentiates between platform dominance levels
-- **Platform Count (20%)**: Provides tiebreaker advantage for multi-platform shows
+- **Consumption (50%)**: Primary driver of ranking differences
+- **Platform Reach (30%)**: Key differentiator for platform excellence
+- **Platform Count (10%)**: Modest advantage for multi-platform shows
+- **Genre Popularity (10%)**: Rewards category leadership and specialization
 
 ## Validation Approach
 
