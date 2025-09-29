@@ -2,7 +2,7 @@
 """
 Cross-Platform Podcast Ranking System
 
-This script creates a unified ranking system across Spotify, YouTube, Amazon, and iHeart
+This script creates a unified ranking system across Spotify, YouTube, Amazon, Apple, and iHeart
 platforms by normalizing engagement metrics and calculating composite scores.
 """
 
@@ -43,6 +43,14 @@ def load_and_clean_data():
         "Average Completion Rate": "amazon_completion_rate"
     })
 
+    # Load Apple data
+    apple = pd.read_csv(data_dir / "apple.csv")
+    apple = apple.rename(columns={
+        "Podcast": "show_name",
+        "Plays (>30s)": "apple_plays"
+    })
+    apple = apple.dropna(subset=["show_name"])
+
     # Load iHeart data
     iheart = pd.read_csv(data_dir / "iheart_platform_nominations.csv", skiprows=2)
     iheart.columns = ["rank", "show_name", "iheart_listeners", "iheart_streams", "iheart_completion", "iheart_followers"]
@@ -54,7 +62,7 @@ def load_and_clean_data():
 
     iheart["iheart_completion"] = iheart["iheart_completion"].str.replace("%", "").astype(float) / 100
 
-    return spotify, youtube, amazon, iheart
+    return spotify, youtube, amazon, apple, iheart
 
 
 def normalize_show_names(df, name_col="show_name"):
@@ -66,7 +74,7 @@ def normalize_show_names(df, name_col="show_name"):
     return df
 
 
-def calculate_platform_scores(spotify, youtube, amazon, iheart):
+def calculate_platform_scores(spotify, youtube, amazon, apple, iheart):
     """Calculate scores using three-component weighted system: consumption + platform reach + platform count."""
 
     # Store original data for total consumption calculation
@@ -77,6 +85,7 @@ def calculate_platform_scores(spotify, youtube, amazon, iheart):
         "youtube": 1.0,      # YouTube watch hours weighted as equivalent to plays
         "spotify": 1.0,      # Spotify plays
         "amazon": 1.0,       # Amazon plays
+        "apple": 1.0,        # Apple plays
         "iheart": 1.0        # iHeart streams
     }
 
@@ -102,6 +111,13 @@ def calculate_platform_scores(spotify, youtube, amazon, iheart):
             'consumption': row['amazon_plays']
         })
 
+    for _, row in apple.iterrows():
+        all_data.append({
+            'show_name': row['show_name'],
+            'platform': 'apple',
+            'consumption': row['apple_plays']
+        })
+
     for _, row in iheart.iterrows():
         all_data.append({
             'show_name': row['show_name'],
@@ -113,18 +129,20 @@ def calculate_platform_scores(spotify, youtube, amazon, iheart):
     spotify["platform_reach"] = (spotify["spotify_plays"] / spotify["spotify_plays"].max()) * 100
     youtube["platform_reach"] = (youtube["youtube_views"] / youtube["youtube_views"].max()) * 100
     amazon["platform_reach"] = (amazon["amazon_plays"] / amazon["amazon_plays"].max()) * 100
+    apple["platform_reach"] = (apple["apple_plays"] / apple["apple_plays"].max()) * 100
     iheart["platform_reach"] = (iheart["iheart_streams"] / iheart["iheart_streams"].max()) * 100
 
     # Store platform reach as the platform score for now (will be combined in create_unified_ranking)
     spotify["spotify_score"] = spotify["platform_reach"]
     youtube["youtube_score"] = youtube["platform_reach"]
     amazon["amazon_score"] = amazon["platform_reach"]
+    apple["apple_score"] = apple["platform_reach"]
     iheart["iheart_score"] = iheart["platform_reach"]
 
-    return spotify, youtube, amazon, iheart
+    return spotify, youtube, amazon, apple, iheart
 
 
-def create_unified_ranking(spotify, youtube, amazon, iheart):
+def create_unified_ranking(spotify, youtube, amazon, apple, iheart):
     """Create unified ranking using four-component weighted system."""
 
     # Load union genre mapping (platform + research + Tavily)
@@ -163,6 +181,7 @@ def create_unified_ranking(spotify, youtube, amazon, iheart):
     spotify = normalize_show_names(spotify)
     youtube = normalize_show_names(youtube)
     amazon = normalize_show_names(amazon)
+    apple = normalize_show_names(apple)
     iheart = normalize_show_names(iheart)
 
     # Start with all unique shows
@@ -170,6 +189,7 @@ def create_unified_ranking(spotify, youtube, amazon, iheart):
     all_shows.update(spotify["show_name"].tolist())
     all_shows.update(youtube["show_name"].tolist())
     all_shows.update(amazon["show_name"].tolist())
+    all_shows.update(apple["show_name"].tolist())
     all_shows.update(iheart["show_name"].tolist())
 
     # Create master dataframe
@@ -179,6 +199,7 @@ def create_unified_ranking(spotify, youtube, amazon, iheart):
     ranking_df = ranking_df.merge(spotify[["show_name", "spotify_score", "spotify_plays"]], on="show_name", how="left")
     ranking_df = ranking_df.merge(youtube[["show_name", "youtube_score", "youtube_views"]], on="show_name", how="left")
     ranking_df = ranking_df.merge(amazon[["show_name", "amazon_score", "amazon_plays", "amazon_customers"]], on="show_name", how="left")
+    ranking_df = ranking_df.merge(apple[["show_name", "apple_score", "apple_plays"]], on="show_name", how="left")
     ranking_df = ranking_df.merge(iheart[["show_name", "iheart_score", "iheart_streams", "iheart_listeners"]], on="show_name", how="left")
 
     # Add genre information
@@ -190,6 +211,7 @@ def create_unified_ranking(spotify, youtube, amazon, iheart):
     # Fill missing numerical values with 0, preserve genre strings
     numeric_cols = ["spotify_score", "spotify_plays", "youtube_score", "youtube_views",
                    "amazon_score", "amazon_plays", "amazon_customers",
+                   "apple_score", "apple_plays",
                    "iheart_score", "iheart_streams", "iheart_listeners"]
 
     for col in numeric_cols:
@@ -208,6 +230,7 @@ def create_unified_ranking(spotify, youtube, amazon, iheart):
         ranking_df["spotify_plays"] +
         ranking_df["youtube_views"] +
         ranking_df["amazon_plays"] +
+        ranking_df["apple_plays"] +
         ranking_df["iheart_streams"]
     )
     max_consumption = ranking_df["total_consumption"].max()
@@ -215,7 +238,7 @@ def create_unified_ranking(spotify, youtube, amazon, iheart):
 
     # Component 2: Platform Reach Score (30% weight)
     # Average of platform-specific reach scores (already calculated as spotify_score etc.)
-    score_cols = ["spotify_score", "youtube_score", "amazon_score", "iheart_score"]
+    score_cols = ["spotify_score", "youtube_score", "amazon_score", "apple_score", "iheart_score"]
     ranking_df["platforms_count"] = (ranking_df[score_cols] > 0).sum(axis=1)
 
     # Calculate average platform reach for shows that appear on platforms
@@ -271,20 +294,20 @@ def create_unified_ranking(spotify, youtube, amazon, iheart):
 def main():
     """Generate cross-platform podcast rankings."""
     # Load data
-    spotify, youtube, amazon, iheart = load_and_clean_data()
+    spotify, youtube, amazon, apple, iheart = load_and_clean_data()
 
     # Calculate platform scores
-    spotify, youtube, amazon, iheart = calculate_platform_scores(spotify, youtube, amazon, iheart)
+    spotify, youtube, amazon, apple, iheart = calculate_platform_scores(spotify, youtube, amazon, apple, iheart)
 
     # Create unified ranking
-    ranking_df = create_unified_ranking(spotify, youtube, amazon, iheart)
+    ranking_df = create_unified_ranking(spotify, youtube, amazon, apple, iheart)
 
     # Save results
     output_cols = ["rank", "show_name", "composite_score", "genre", "country",
                    "consumption_score", "platform_reach_score", "platform_count_score", "genre_rank_score",
                    "total_consumption", "platforms_count",
-                   "spotify_score", "youtube_score", "amazon_score", "iheart_score",
-                   "spotify_plays", "youtube_views", "amazon_plays", "iheart_streams"]
+                   "spotify_score", "youtube_score", "amazon_score", "apple_score", "iheart_score",
+                   "spotify_plays", "youtube_views", "amazon_plays", "apple_plays", "iheart_streams"]
 
     ranking_df[output_cols].to_csv("podcast_cross_platform_rankings.csv", index=False)
 
@@ -306,6 +329,9 @@ def main():
         if row["amazon_score"] > 0:
             platforms.append("Amazon")
             metrics.append(f"Amazon: {row['amazon_plays']:,.0f} plays")
+        if row["apple_score"] > 0:
+            platforms.append("Apple")
+            metrics.append(f"Apple: {row['apple_plays']:,.0f} plays")
         if row["iheart_score"] > 0:
             platforms.append("iHeart")
             metrics.append(f"iHeart: {row['iheart_streams']:,.0f} streams")
