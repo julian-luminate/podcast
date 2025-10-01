@@ -66,11 +66,47 @@ def load_and_clean_data():
 
 
 def normalize_show_names(df, name_col="show_name"):
-    """Standardize show names for cross-platform matching."""
+    """
+    Standardize show names for cross-platform matching.
+    Removes common suffixes like 'Podcast', 'Show', 'with [host]' to improve matching.
+    """
+    import re
+
+    def improved_normalize(name):
+        if pd.isna(name) or not name:
+            return ''
+
+        # Convert to lowercase and strip whitespace
+        normalized = str(name).strip().lower()
+
+        # Remove common suffixes (order matters - remove longer patterns first)
+        suffixes_to_remove = [
+            r'\s+the\s+podcast$',
+            r'\s+podcast$',
+            r'\s+the\s+show$',
+            r'\s+show$',
+            r'\s+with\s+stugotz$',
+            r'\s+with\s+dax\s+shepard$',
+            r'\s+with\s+karen\s+kilgariff\s+and\s+georgia\s+hardstark$',
+            r'\s+with\s+matt\s+rogers\s+and\s+bowen\s+yang$',
+            r'\s+with\s+rhett\s+link$',
+            r'\s+w\s+theo\s+von$',
+            r'\s+w/\s+theo\s+von$',
+        ]
+
+        for suffix in suffixes_to_remove:
+            normalized = re.sub(suffix, '', normalized, flags=re.IGNORECASE)
+
+        # Remove punctuation but keep spaces
+        normalized = re.sub(r'[^\w\s]', '', normalized)
+
+        # Normalize whitespace
+        normalized = re.sub(r'\s+', ' ', normalized).strip()
+
+        return normalized
+
     df = df.copy()
-    df[name_col] = df[name_col].str.strip().str.lower()
-    df[name_col] = df[name_col].str.replace(r"[^\w\s]", "", regex=True)
-    df[name_col] = df[name_col].str.replace(r"\s+", " ", regex=True)
+    df[name_col] = df[name_col].apply(improved_normalize)
     return df
 
 

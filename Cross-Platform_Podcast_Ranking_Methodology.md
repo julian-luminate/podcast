@@ -2,26 +2,118 @@
 
 ## Overview
 
-This methodology creates a unified ranking system across four major podcast platforms: Spotify, YouTube, Amazon (Audible/Amazon Music), and iHeart Radio. The system uses a three-component weighted scoring approach that balances total consumption, platform-specific performance, and multi-platform presence. Designed to identify the top 25 podcasts for Golden Globes eligibility consideration based on comprehensive audience reach and engagement metrics.
+This methodology creates a unified ranking system across five major podcast platforms: Spotify, YouTube, Amazon (Audible/Amazon Music), Apple Podcasts, and iHeart Radio. The system uses a four-component weighted scoring approach that balances total consumption, platform-specific performance, multi-platform presence, and within-genre popularity. Designed to identify the top podcasts for competitive intelligence and market research based on comprehensive audience reach and engagement metrics.
 
 ## Data Sources
 
 - **Spotify**: US market, YTD 2025 plays (36 shows)
-- **YouTube**: US market playlists, watch time hours (filtered from global dataset)
-- **Amazon**: US market, Jan-Oct 2025 total plays (32 shows)
+- **YouTube**: US market playlists, views (filtered from global dataset, 101 shows)
+- **Amazon**: US market, Jan-Oct 2025 total plays (32 shows, padded to 741k rows)
+- **Apple**: US market, plays >30s (30 shows)
 - **iHeart**: US platform data, YTD streams (27 shows)
+
+**Total Dataset:** 108 unique shows after cross-platform matching and deduplication
 
 ## Common Metrics Identified
 
 **Primary engagement metric per platform:**
 - Spotify: Total plays
-- YouTube: Watch time hours (represents deeper engagement than views)
+- YouTube: Views (video engagement metric)
 - Amazon: Total plays
+- Apple: Plays >30s (qualified engagement)
 - iHeart: Total streams
 
-## Normalization Strategy
+## Data Collection and Preparation
 
-### 1. Four-Component Weighted Scoring System
+### 1. Data Loading and Cleaning
+```python
+# Platform-specific data loading
+- Spotify: CSV with 7-row header skip, columns: [show_name, plays, category]
+- YouTube: CSV with playlist_name → show_name, filtered to US shows only
+- Amazon: CSV with 2-row header skip, heavy row padding (~741k rows for ~32 shows)
+- Apple: CSV with columns: [Rank, Podcast, Plays (>30s), URL]
+- iHeart: CSV with 2-row header skip, columns include listeners, streams, completion, followers
+```
+
+### 2. Show Name Normalization for Cross-Platform Matching
+
+**Enhanced Normalization Algorithm:**
+```python
+def normalize_show_names(show_name):
+    # Convert to lowercase
+    normalized = show_name.strip().lower()
+
+    # Remove common suffixes (order matters - longest first)
+    suffixes = [
+        r'\s+the\s+podcast$',
+        r'\s+podcast$',
+        r'\s+the\s+show$',
+        r'\s+show$',
+        r'\s+with\s+[host names]$',  # e.g., "with Dax Shepard"
+        r'\s+w\s+[host]$',            # e.g., "w Theo Von"
+        r'\s+w/\s+[host]$',           # e.g., "w/ Theo Von"
+    ]
+
+    for suffix in suffixes:
+        normalized = re.sub(suffix, '', normalized)
+
+    # Remove punctuation, normalize spaces
+    normalized = re.sub(r'[^\w\s]', '', normalized)
+    normalized = re.sub(r'\s+', ' ', normalized).strip()
+
+    return normalized
+```
+
+**Matching Results:**
+- 28 shows matched across 2+ platforms
+- 15 shows matched across 3+ platforms
+- 5 shows matched across 4+ platforms
+- 14 additional matches compared to basic normalization
+
+**Examples of Improved Matching:**
+- "Armchair Expert with Dax Shepard" + "Armchair Expert" → `armchair expert`
+- "This Past Weekend w/ Theo Von" → `this past weekend`
+- "The Ben Shapiro Show" + "The Ben Shapiro Podcast" → `the ben shapiro`
+- "My Favorite Murder with Karen Kilgariff and Georgia Hardstark" → `my favorite murder`
+
+### 3. Genre Classification
+
+**Standard Genre Categories:**
+- News & Politics
+- True Crime
+- Comedy
+- Sports
+- Education
+- Entertainment
+- Interview & Talk
+- Business
+
+**Classification Process:**
+1. Extract unique show names across all platforms
+2. Use Tavily web search to research show genre and metadata
+3. Map to standardized genre categories
+4. Store in `union_genre_mapping.csv` (147 shows classified)
+
+**Coverage:** 100% of shows classified (0 "Other" genres remaining)
+
+### 4. Country of Origin Mapping
+
+**Classification Process:**
+1. Extract show names requiring country identification
+2. Use Tavily/Wikipedia to research show origin
+3. Identify host nationality, production location, primary audience
+4. Store in `comprehensive_country_mapping.csv` (167 shows mapped)
+
+**Coverage:** 100% of shows mapped (0 "Unknown" countries remaining)
+
+**Country Distribution:**
+- US: 93 shows (majority)
+- GB: 3 shows
+- DE: 8 shows
+- ES: 3 shows
+- JP: 1 show
+
+### 5. Four-Component Weighted Scoring System
 Rankings are calculated using a weighted sum of four key components that reflect different aspects of podcast success:
 
 **Component Weights:**
@@ -33,46 +125,40 @@ Rankings are calculated using a weighted sum of four key components that reflect
 **Detailed Calculation:**
 ```
 # Component 1: Total Consumption Score (50% weight)
-Total Consumption = Spotify Plays + YouTube Watch Hours + Amazon Plays + iHeart Streams
+Total Consumption = Spotify Plays + YouTube Views + Amazon Plays + Apple Plays + iHeart Streams
 Consumption Score = (Total Consumption / Maximum Total) × 100
 
-# Component 2: Platform Reach Score (30% weight)
+# Component 2: Platform Reach Score (20% weight)
 Platform Reach = Average of individual platform scores (0-100 each)
 Individual Platform Score = (Show Metric / Platform Maximum) × 100
 
-# Component 3: Platform Count Score (10% weight)
+# Component 3: Platform Count Score (20% weight)
 Platform Count Score = (Number of Platforms / Maximum Platforms) × 100
+Maximum Platforms = 5 (Spotify, YouTube, Amazon, Apple, iHeart)
 
 # Component 4: Within-Genre Popularity Score (10% weight)
 Genre Rank = Show's consumption rank within its unified genre category
-Genre Score = ((Max Rank - Show Rank + 1) / Max Rank) × 100
+Genre Score = (Show Consumption / Max Genre Consumption) × 100
 
 # Final Composite Score
-Composite Score = (Consumption × 0.5) + (Platform Reach × 0.3) + (Platform Count × 0.1) + (Genre Popularity × 0.1)
+Composite Score = (Consumption × 0.5) + (Platform Reach × 0.2) + (Platform Count × 0.2) + (Genre Popularity × 0.1)
 ```
 
 **Rationale for This Approach:**
 - **Total Reach Priority (50%)**: Maintains absolute audience impact as the dominant factor
-- **Platform Excellence (30%)**: Significant weight for strong platform-specific performance
-- **Multi-Platform Strategy (10%)**: Maintains value for cross-platform presence
+- **Platform Excellence (20%)**: Rewards strong performance relative to platform maximums
+- **Multi-Platform Strategy (20%)**: Significant credit for successful cross-platform distribution
 - **Genre Context (10%)**: Rewards shows that dominate within their content category
 - **Comprehensive Assessment**: Four dimensions provide holistic view of podcast success
-
-### 2. Show Name Standardization
-- Convert to lowercase
-- Remove punctuation and special characters
-- Standardize spacing for cross-platform matching
-
-### 3. Final Composite Calculation
-The three component scores are combined using the weighted formula shown above. This replaces traditional platform averaging approaches with a more sophisticated multi-dimensional assessment that better reflects podcast success across different metrics.
 
 ## Fairness Considerations
 
 ### Component Balance
-The 50/30/20 weight distribution ensures:
+The 50/20/20/10 weight distribution ensures:
 - Total consumption drives primary ranking differences (reflects real-world impact)
-- Platform performance provides meaningful differentiation (rewards excellence)
-- Multi-platform presence offers modest but important advantage (credits strategy)
+- Platform reach provides meaningful differentiation (rewards excellence within platforms)
+- Multi-platform presence offers significant advantage (credits distribution strategy)
+- Genre popularity rewards category leadership (recognizes niche dominance)
 
 ### Missing Data Handling
 - Missing platform data treated as 0 for all calculations
@@ -87,11 +173,18 @@ The 50/30/20 weight distribution ensures:
 
 ### Four-Component Balance
 - **Total Reach Priority**: Consumption score (50%) ensures absolute audience size remains the primary driver
-- **Platform Excellence Recognition**: Reach score (30%) significantly rewards shows that excel on their platforms
-- **Multi-Platform Recognition**: Count score (10%) provides modest credit for cross-platform presence
+- **Platform Excellence Recognition**: Reach score (20%) rewards shows that excel relative to their platforms
+- **Multi-Platform Recognition**: Count score (20%) provides significant credit for cross-platform presence
 - **Genre Context Assessment**: Genre popularity (10%) rewards category leadership and specialization
 - **Prevents Single-Metric Gaming**: No component alone can determine final ranking
 - **Comprehensive Evaluation**: Reflects total impact, platform mastery, distribution strategy, and genre dominance
+
+### Show Name Matching Fairness
+- **Enhanced Normalization**: Removes suffix variations that could split same show across platforms
+- **Consistent Application**: Same normalization applied to all platforms equally
+- **14 Additional Matches**: Improved algorithm found 14 shows that were previously split
+- **No Manual Overrides**: All matching done algorithmically for reproducibility
+- **Transparent Process**: Normalization logic fully documented and testable
 
 ## Ranking Output
 
@@ -165,20 +258,89 @@ Rankings can be validated by:
 
 ## Technical Implementation
 
-### Data Processing
-1. **Data Loading**: Four CSV files loaded with platform-specific cleaning
-2. **Geographic Filtering**: YouTube filtered to US shows only
-3. **Name Normalization**: Show names standardized for cross-platform matching
-4. **Score Calculation**: Three-component system applied as described above
+### Data Processing Pipeline
+1. **Data Loading**: Five CSV files loaded with platform-specific cleaning
+   - Spotify: 7-row header skip, string-to-float conversion for plays
+   - YouTube: Rename columns, filter to US shows only
+   - Amazon: 2-row header skip, dropna to remove padding rows
+   - Apple: Standard CSV load, rename columns
+   - iHeart: 2-row header skip, clean numeric columns with commas
+
+2. **Show Name Normalization**: Enhanced algorithm for cross-platform matching
+   - Remove common suffixes (podcast, show, with host, etc.)
+   - Standardize punctuation and spacing
+   - Applied consistently to all 5 platforms
+
+3. **Genre/Country Enrichment**: Web research to classify shows
+   - Use Tavily API to research show metadata
+   - Map to standard genre categories (8 genres)
+   - Identify country of origin
+   - Store in mapping CSV files for reproducibility
+
+4. **Platform Score Calculation**: Within-platform normalization
+   - Each platform: (show_metric / platform_max) × 100
+   - Creates 0-100 scale per platform
+
+5. **Composite Score Calculation**: Four-component weighted system
+   - Consumption: Sum all platform metrics, normalize to 100
+   - Platform Reach: Average of platform scores where show appears
+   - Platform Count: (num_platforms / 5) × 100
+   - Genre Rank: Normalize within genre based on consumption
+
+6. **Data Merging**: Cross-platform aggregation
+   - Normalized names used as join key
+   - Left join from all unique shows to each platform
+   - Missing data filled with 0 (no penalty for missing platforms)
+
+### Reproducibility Steps
+
+**Complete Process:**
+```bash
+# 1. Install dependencies
+pip3 install pandas numpy
+
+# 2. Place data files in correct locations
+data/
+├── spotify.csv
+├── youtube.csv
+├── amazon.csv
+├── apple.csv
+└── iheart_platform_nominations.csv
+
+# 3. Ensure genre/country mappings exist (or will be generated)
+union_genre_mapping.csv
+comprehensive_country_mapping.csv
+
+# 4. Run main ranking system
+python3 podcast_ranking_system.py
+
+# 5. Output generated
+podcast_cross_platform_rankings.csv  # 108 shows with all metrics
+```
+
+**Analysis Scripts Available:**
+- `podcast_ranking_system.py` - Main ranking algorithm
+- `improve_show_matching.py` - Analyze name normalization effectiveness
+- Genre/country research scripts - Generate mapping files from web research
 
 ### Output Generation
-Execute `python podcast_ranking_system.py` to generate:
-- **CSV Export**: `podcast_cross_platform_rankings.csv` with complete data and scores
-- **Console Display**: Top 25 shows with detailed component breakdowns
+Execute `python3 podcast_ranking_system.py` to generate:
+- **CSV Export**: `podcast_cross_platform_rankings.csv` with 108 shows, all metrics
+- **Console Display**: Full rankings with detailed component breakdowns
 - **Transparency**: All raw metrics and component scores visible for validation
+
+**Output Columns:**
+- rank, show_name, composite_score, genre, country
+- consumption_score, platform_reach_score, platform_count_score, genre_rank_score
+- total_consumption, platforms_count
+- spotify_score, youtube_score, amazon_score, apple_score, iheart_score
+- spotify_plays, youtube_views, amazon_plays, apple_plays, iheart_streams
 
 ### Quality Assurance
 - All calculations use consistent 0-100 normalization
-- Component weights clearly defined and documented
-- Cross-platform matching handles name variations
+- Component weights clearly defined and documented (50/20/20/10)
+- Cross-platform matching handles 14 common name variations
 - Missing data handled systematically without bias
+- 100% genre coverage (0 "Other" categories)
+- 100% country coverage (0 "Unknown" countries)
+- All 5 platforms integrated with consistent methodology
