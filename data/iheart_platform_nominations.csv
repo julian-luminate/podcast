@@ -1,28 +1,151 @@
-﻿,,Data the result of listening on the iHeartRadio app,,,
-GOLDEN GLOBES: iHEARTRADIO PLATFORM SUBMISSIONS,,,,,
-# of Shows,Title,UNIQUE LISTENERS - YTD,TOTAL STREAMS - YTD,COMPLETION RATE,TOTAL FOLLOWERS
-1,On Purpose with Jay Shetty," 352,083 "," 1,199,267 ",80%," 28,306 "
-2,Las Culturistas with Matt Rogers and Bowen Yang," 224,259 "," 462,533 ",86%," 9,329 "
-3,New Heights with Jason & Travis Kelce," 364,132 "," 1,307,106 ",69%," 36,168 "
-4,Dateline NBC," 488,583 "," 16,821,889 ",87%," 78,726 "
-5,The Joe Rogan Experience," 403,717 "," 15,303,298 ",59%," 133,784 "
-6,Stuff You Should Know," 473,011 "," 4,781,438 ",99%," 70,251 "
-7,The Breakfast Club," 328,528 "," 9,144,436 ",88%," 84,164 "
-8,Crime Junkie," 328,126 "," 13,957,289 ",82%," 76,083 "
-9,Are You A Charlotte?," 187,044 "," 490,944 ",77%," 4,616 "
-10,20/20," 144,131 "," 5,740,014 ",55%," 35,723 "
-11,The Steve Harvey Morning Show," 149,049 "," 5,375,016 ",78%," 32,313 "
-12,The Bobby Bones Show," 248,496 "," 18,470,787 ",87%," 29,428 "
-13,48 Hours," 96,365 "," 5,585,856 ",79%," 26,315 "
-14,The Ramsey Show," 46,429 "," 3,093,305 ",49%," 12,296 "
-15,My Favorite Murder with Karen Kilgariff and Georgia Hardstark," 82,092 "," 1,945,784 ",96%," 8,057 "
-16,Wait Wait... Don't Tell Me!," 23,811 "," 539,763 ",92%," 5,209 "
-17,Crook County," 77,222 "," 448,265 ",81%," 11,313 "
-18,The Herd with Colin Cowherd," 86,840 "," 2,342,824 ",73%," 11,345 "
-19,Not Gonna Lie with Kylie Kelce," 25,514 "," 324,598 ",56%," 10,116 "
-20,Good Hang with Amy Poehler," 16,030 "," 233,222 ",63%," 3,660 "
-21,Conan O’Brien Needs A Friend," 31,035 "," 1,467,097 ",92%," 7,714 "
-22,SmartLess," 85,861 "," 2,460,919 ",72%," 18,708 "
-23,Morbid," 83,514 "," 5,752,811 ",82%,"19,349"
-24,"MrBallen Podcast: Strange, Dark & Mysterious Stories"," 46,338 "," 2,846,641 ",98%,"17,827"
-25,Hidden Brain," 11,464 "," 173,878 ",96%," 3,400 "
+Network,Show title,TOTAL STREAMS - YTD,UNIQUE LISTENERS - YTD
+NBC News,Dateline NBC,17541600,485860
+iHeartPodcasts,Stuff You Should Know,4416170,448550
+Wondery,New Heights with Jason & Travis Kelce,1794520,423680
+Joe Rogan,The Joe Rogan Experience,17152890,406510
+ABC News,Start Here,718320,403910
+iHeartPodcasts,On Purpose with Jay Shetty,1353080,367690
+iHeartPodcasts,The Breakfast Club,10590010,343430
+audiochuck,Crime Junkie,15718940,332500
+Premiere Networks,The Bobby Bones Show,23091740,273960
+Big Money Players Network and iHeartPodcasts,Las Culturistas with Matt Rogers and Bowen Yang,511320,237790
+iHeartPodcasts,Are You A Charlotte?,479400,184630
+iHeartPodcasts,Post Run High,319260,177620
+iHeartPodcasts,The Steve Harvey Morning Show,5871660,159020
+iHeartPodcasts and Glass Podcasts,Betrayal: Weekly,3164560,145470
+ABC News,20/20,6258780,133730
+iHeartPodcasts,Amy Robach & T.J. Holmes Present,378740,129630
+The Daily Wire,The Ben Shapiro Show,6964750,126840
+iHeartPodcasts,Cold Case Files: Miami,259530,126130
+iHeartPodcasts,Boysober,172440,124150
+iHeartPodcasts,How to Money,451680,117090
+iHeartPodcasts,True Crime Tonight,590400,111180
+CBS News,48 Hours,62250190,107770
+iHeartPodcasts and Hello Sunshine,Bookmarked by Reese's Book Club,127720,102860
+iHeartPodcasts,Ridiculous History,380970,101530
+iHeartPodcasts and Coast to Coast AM,The Best of Coast to Coast AM,843800,97410
+iHeartPodcasts and Tenderfoot TV,Monster: BTK,565370,96110
+Exactly Right and iHeartPodcasts,My Favorite Murder with Karen Kilgariff and Georgia Hardstark,2141660,94130
+iHeartPodcasts and The Volume,The Herd with Colin Cowherd,2731730,92030
+Elvis Duran Podcast Network and iHeartPodcasts,Elvis Duran and the Morning Show ON DEMAND,9434890,86830
+iHeartPodcasts,Therapy Gecko,246660,86220
+Ash Kelley & Alaina Urquhart,Morbid,6182240,85360
+"Jason Bateman, Sean Hayes, Will Arnett",SmartLess,2672570,84160
+iHeartPodcasts,Intentionally Disturbing,174970,81150
+Tenderfoot TV and iHeartPodcasts,Crook County,469700,74160
+Oxygen,Snapped: Women Who Murder,4847440,73990
+iHeartPodcasts,Strawberry Letter,1477490,73140
+iHeartPodcasts,Variety Confidential,189760,70940
+iHeartPodcasts,Math & Magic: Stories from the Frontiers of Marketing with Bob Pittman,99870,61730
+NPR,Up First from NPR,334710,61650
+The Black Effect and iHeartPodcasts,"I DidnÕt Know, Maybe You DidnÕt Either!",114240,57460
+The New York Times,The Daily,1109370,55690
+iHeartPodcasts,"I Do, Part 2",93110,54980
+iHeartPodcasts and Dan Patrick Podcast Network,The Dan Patrick Show,2673870,54850
+iHeartPodcasts and CrimeOnline,Crime Stories with Nancy Grace,1583200,53040
+Mel Robbins,The Mel Robbins Podcast,1289880,52740
+iHeartPodcasts,Murder on Songbird Road,400160,52430
+iHeartPodcasts and Paramount Podcasts,The Official Yellowstone Podcast,102800,52240
+Shawn Ryan,Shawn Ryan Show,3217480,49890
+iHeartPodcasts,Happy Face,427130,49340
+audiochuck,Park Predators,2241400,48510
+WebMD,Health Discovered,56060,48360
+iHeartPodcasts and Unanimous Media,Fudd Around And Find Out,82580,48050
+Ramsey Network,The Ramsey Show,3980720,47750
+Ballen Studios,"MrBallen Podcast: Strange, Dark & Mysterious Stories",3154760,45570
+audiochuck,The Deck,2383190,44970
+iHeartPodcasts,Stuff You Missed in History Class,478790,44950
+NFL,NFL Daily with Gregg Rosenthal,195170,44350
+Stephen A. Smith & SiriusXM,The Stephen A. Smith Show,149130,41760
+iHeartPodcasts,United States of Kennedy,89970,41020
+iHeartPodcasts,ok storytime,576610,39920
+iHeartPodcasts,This is Gavin Newsom,128160,39250
+Theo Von,This Past Weekend w/ Theo Von,1488020,37930
+iHeartPodcasts,Law & Order: Criminal Justice SystemÊ- Season 1 & Season 2,189560,36940
+Cool Zone Media and iHeartPodcasts,Behind the Bastards,1329730,36550
+The Daily Wire,The Matt Walsh Show,2419070,35430
+iHeartPodcasts,Stuff They Don't Want You To Know,950580,35110
+A&E / PodcastOne,Cold Case Files,1640450,33820
+MyCultura and iHeartPodcasts,Murder on the Towpath with Soledad OÕBrien,180560,33670
+iHeartPodcasts,40s and Free Agents,51050,33570
+Tenderfoot TV and iHeartPodcasts,Wisecrack,124270,33360
+Lava for Good Podcasts,Bone Valley,652100,33040
+cylla senii,Situationships Podcast,39540,31950
+iHeartPodcasts,Pod Meets World,1681250,30010
+iHeartPodcasts and Shay Shay Media,Club Shay Shay,992660,29960
+ESPN,ESPN SportsCenter Update,19820,29680
+"Joel Osteen, SiriusXM",Joel Osteen Podcast,1255360,29660
+Chris Christensen,Travel with Amateur Traveler Podcast,41540,29530
+iHeartPodcasts,The Greatest True Crime Stories Ever Told,318290,29180
+Mile Higher Media & Audioboom Studios,True Crime with Kendall Rae,1065750,28750
+audiochuck,Anatomy of Murder,2117990,28630
+NBC News,Dateline Originals,676080,28280
+Totally 80s,Totally 80s,19320,28140
+Team Coco & Earwolf,Conan OÕBrien Needs A Friend,1401060,27770
+HBO Podcasts,Real Time with Bill Maher,205540,27750
+Nashville Podcast Network,Bobbycast,300740,27410
+iHeartPodcasts,My Friend Daisy,228590,27390
+iHeartPodcasts,Our American Stories,198500,27090
+Victor Davis Hanson and Jack Fowler,The Victor Davis Hanson Show,1120840,26950
+Alex Cooper,Call Her Daddy,367460,26910
+iHeartPodcasts,The Idaho Massacre,301490,26790
+Sabrina-Marie,Building Abundant Success!!© with Sabrina-Marie,26790,26570
+The Way I Heard It with Mike Rowe,The Way I Heard It with Mike Rowe,804930,26530
+audiochuck,CounterClock,600990,25950
+NPR,Pop Culture Happy Hour,66090,25770
+K-LOVE News,K-LOVE News,12240,25720
+"James Pietragallo, Jimmie Whisman",Small Town Murder,2914540,25680
+Wave Originals,Not Gonna Lie with Kylie Kelce,418360,25430
+Fox Sports Radio and iHeartPodcasts,2 Pros and a Cup of Joe,1249150,24970
+iHeartPodcasts and Glass Podcasts,American Homicide,439330,24620
+iHeartPodcasts,Ruthie's Table 4,52240,23950
+iHeartPodcasts,What Happened to Talina Zar,304500,23930
+Sword and Scale,Sword and Scale,1631970,23330
+NPR,Wait Wait... Don't Tell Me!,571050,22960
+NPR,NPR News Now,278990,22810
+iHeartPodcasts,Two Ts In A Pod with Teddi Mellencamp and Tamra Judge,1039780,22780
+iHeartPodcasts,Dear Chelsea,261980,22760
+audiochuck,Dark Downeast,1167080,22340
+Spotify Studios,Serial Killers,930350,22300
+Audioboom Studios,Dark History,457690,22090
+Big Money Players Network and iHeartPodcasts,The Nikki Glaser Podcast,122660,21210
+Pray.com,Bible in a Year with Jack Graham,448110,21120
+Crime House,Murder: True Crime Stories,295340,20720
+ABC News,Devil in the Desert,175810,20450
+Double Elvis Productions,DISGRACELAND,389870,19880
+iHeartPodcasts,Run That Prank,292940,19830
+Audacy,Fly on the Wall with Dana Carvey and David Spade,733780,19810
+The Black Effect and iHeartPodcasts,Drink Champs,649270,19790
+Aaron Mahnke,Lore,673860,19690
+audiochuck | Crime House,So Supernatural,876770,19580
+Dumb Blonde Productions,Dumb Blonde,418710,19300
+The Black Effect and iHeartPodcasts,All The Smoke,222110,18770
+audiochuck,THREE,281830,18430
+Casefile Presents,Casefile True Crime,728740,18290
+Fox Sports Radio and iHeartPodcasts,The Odd Couple with Rob Parker & Kelvin Washington,313070,18190
+Bloody FM,Murder In America,1410030,18160
+iHeartPodcasts and NFL,The Season with Peter Schrager,20670,18120
+Fox Sports Radio and iHeartPodcasts,The Ben Maller Show,443220,18030
+NBC News,Murder in the Moonlight,113150,17730
+iHeartPodcasts,Emergency Intercom,33190,17430
+iHeartPodcasts and Novel,The Girlfriends: Jailhouse Lawyer - Season 3,186460,17360
+Wondery,The Vanished Podcast,606160,16990
+Tenderfoot TV,Up and Vanished,423900,16870
+Annie Elise & Audioboom Studios,Serialously with Annie Elise,739670,16860
+Wondery | Ballen Studios,MrBallenÕs Medical Mysteries,677860,16690
+Fox Sports Radio and iHeartPodcasts,Fox Sports Radio,139740,16670
+Tread Lively,Unashamed with the Robertson Family,804280,16630
+Black Wealth Renaissance,Black Wealth Renaissance,19790,16530
+NBC News,Dateline: Missing In America,305850,16380
+Pushkin Industries,The Happiness Lab with Dr. Laurie Santos,64720,16380
+Cool Zone Media and iHeartPodcasts,It Could Happen Here,294010,16350
+Bobby Lee & Andrew Santino,Bad Friends,1331610,16050
+Armchair Umbrella,Armchair Expert with Dax Shepard,972790,16020
+iHeartMedia,Hoax!,42350,15980
+iHeartPodcasts,SNAFU with Ed Helms,142860,15860
+The Ringer,Good Hang with Amy Poehler,270350,15810
+Ky Dickens,The Telepathy Tapes,183650,15560
+Dr. Emily Morse,Sex With Emily,169430,15120
+Lionsgate Sound,Scamanda,142830,14920
+iHeartPodcasts,What Are We Even Doing? with Kyle MacLachlan,16000,14900
+Broken Cycle Media,Something Was Wrong,460120,14640
